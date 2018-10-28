@@ -20,4 +20,8 @@ def draw():
     
     gallo_pic.resize(150, 0)
     image(gallo_pic, 435, 459)
-
+    
+    if mousePressed:
+        fill(255, 255, 255, 255)
+        rectMode(CORNERS)
+        rect(0, 0, 640, 580)
