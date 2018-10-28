@@ -20,7 +20,4 @@ def draw():
     
     gallo_pic.resize(150, 0)
     image(gallo_pic, 435, 459)
-    
-    fill(255, 255, 255)
-    textSize(10)
-    text(str(mouseX) + ", " + str(mouseY), mouseX, mouseY)
+
