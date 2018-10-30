@@ -78,10 +78,6 @@ def draw():
     rect(140, 280, 20, 20)
     rect(170, 305, 20, 20)
     
-    #Moon
-    fill(200, 255, 255, 80)
-    ellipse(100, 100, 50, 50)
-    
     #Land in front
     fill(81, 100, 87)
     ellipse(140, 571, 600, 300)
