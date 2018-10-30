@@ -1,0 +1,9 @@
+    #Ghost
+    fill(255, 255, 255, 70)
+    arc(400, 200, 90, 200, -PI, 0)
+    arc(370, 200, 30, 40, radians(0), radians(180))
+    arc(400, 200, 30, 40, radians(0), radians(180))
+    arc(430, 200, 30, 40, radians(0), radians(180))
+    fill(0, 0, 0, 90)
+    ellipse(385, 140, 10, 20)
+    ellipse(415, 140, 10, 20)
