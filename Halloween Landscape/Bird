@@ -1,0 +1,7 @@
+    pushMatrix()
+    fill(0)
+    rotate(radians(5))
+    arc(500, 100, 40, 5, -PI, 0)
+    rotate(radians(10))    
+    arc(500, 100, 40, 5, -PI, 0)
+    popMatrix()
