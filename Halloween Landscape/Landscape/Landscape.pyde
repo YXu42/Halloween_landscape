@@ -99,10 +99,13 @@ def draw():
     textSize(10)
     text(str(mouseX) + ", " + str(mouseY), mouseX, mouseY)
     
+    #Moon
+    fill(200, 255, 255, 80)
+    ellipse(540, 70, 50, 50)
+    
 def cloud(x_location, y_location):
     fill(100, 99, 99, 150)
     ellipse(x_location, y_location, 100, 70)
     ellipse(x_location + 65, y_location - 18, 103, 73)
     ellipse(x_location + 126, y_location - 3, 100, 70)
     ellipse(x_location + 40, y_location + 34, 100, 50)
-    ellipse(x_location + 120, y_location + 30, 97, 57)
