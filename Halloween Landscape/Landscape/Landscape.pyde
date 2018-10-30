@@ -7,9 +7,16 @@ def setup():
     imageMode(CENTER)
     
 def draw():
-    global x
+    global x, timer, random_x, random_y
+    timer += 1
+    
+    #if timer == random.randint(timer, 450):
+       # x = 240
+       # timer = 0
+    
     if x >= 0:
-        x -= 10
+        x -= 1.5
+        
     background(87, 82, 100)
     noStroke()
     
@@ -75,9 +82,14 @@ def draw():
     gallo_pic.resize(150, 0)
     image(gallo_pic, 435, 459)
     
-    #Lightning effect on click
-    if mousePressed:
-        x = 220
     rectMode(CORNERS)
     fill(255, x)
     rect(0, 0, width, height)
+    
+def cloud(x_location, y_location):
+    fill(100, 99, 99, 220)
+    ellipse(x_location, y_location, 100, 70)
+    ellipse(x_location + 65, y_location - 18, 103, 73)
+    ellipse(x_location + 126, y_location - 3, 100, 70)
+    ellipse(x_location + 40, y_location + 34, 100, 50)
+    ellipse(x_location + 120, y_location + 30, 97, 57)
