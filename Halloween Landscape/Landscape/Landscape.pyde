@@ -1,10 +1,10 @@
 x = 0
 
 def setup():
-    global gallo_pic
+    #global gallo_pic
     size(640, 580)
-    gallo_pic = loadImage("https://www.clipartmax.com/png/middle/8-86302_free-to-use-public-domain-zombie-clip-art-zombie-clipart-transparent-background.png")
-    imageMode(CENTER)
+    #gallo_pic = loadImage("https://www.clipartmax.com/png/middle/8-86302_free-to-use-public-domain-zombie-clip-art-zombie-clipart-transparent-background.png")
+    #imageMode(CENTER)
     
 def draw():
     global x, timer, random_x, random_y
@@ -79,8 +79,8 @@ def draw():
     ellipse(509, 488, 700, 200)
     
     #Test zombie
-    gallo_pic.resize(150, 0)
-    image(gallo_pic, 435, 459)
+    #gallo_pic.resize(150, 0)
+    #image(gallo_pic, 435, 459)
     
     rectMode(CORNERS)
     fill(255, x)
