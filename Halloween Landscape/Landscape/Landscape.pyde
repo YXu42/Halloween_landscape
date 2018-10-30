@@ -15,15 +15,19 @@ def draw():
     global x, timer, random_x, random_y
     timer += 1
     
-    #if timer == random.randint(timer, 450):
-       # x = 240
-       # timer = 0
+    if timer == random.randint(timer, 450):
+        x = 240
+        timer = 0
     
     if x >= 0:
         x -= 1.5
         
     background(87, 82, 100)
     noStroke()
+    
+    cloud(583, 108)
+    cloud(469, 148)
+    cloud(393, 90)
     
     #Land at back
     fill(58, 72, 63)
@@ -91,8 +95,12 @@ def draw():
     fill(255, x)
     rect(0, 0, width, height)
     
+    fill(255, 255, 255)
+    textSize(10)
+    text(str(mouseX) + ", " + str(mouseY), mouseX, mouseY)
+    
 def cloud(x_location, y_location):
-    fill(100, 99, 99, 220)
+    fill(100, 99, 99, 150)
     ellipse(x_location, y_location, 100, 70)
     ellipse(x_location + 65, y_location - 18, 103, 73)
     ellipse(x_location + 126, y_location - 3, 100, 70)
