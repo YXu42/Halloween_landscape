@@ -103,5 +103,5 @@ def cloud(x_location, y_location):
     fill(100, 99, 99, 150)
     ellipse(x_location, y_location, 100, 70)
     ellipse(x_location + 65, y_location - 18, 103, 73)
-    ellipse(x_location + 126, y_location - 3, 100, 70)
+    ellipse(x_location + 100, y_location - 3, 100, 70)
     ellipse(x_location + 40, y_location + 34, 100, 50)
