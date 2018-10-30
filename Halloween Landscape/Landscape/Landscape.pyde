@@ -1,4 +1,9 @@
+import random
+
 x = 0
+timer = 0
+random_x = 50
+random_y = 50
 
 def setup():
     #global gallo_pic
