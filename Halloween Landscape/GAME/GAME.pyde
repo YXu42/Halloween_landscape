@@ -64,7 +64,6 @@ def draw():
     fill(0)
     ellipse(x_three + 85, y_three + 30, 10, 20)
     ellipse(x_three + 115, y_three + 30, 10, 20)
-
     #Ghost coming down
     if y_three < 720:
         y_three += 4
