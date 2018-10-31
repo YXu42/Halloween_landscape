@@ -167,7 +167,7 @@ def cloud(x_location, y_location):
 def game():
     global img, x_one, y_one, x_two, y_two, x_three, y_three, lost, score
     
-    #Background image)
+    #Background image
     rectMode(CENTER)
     background(0)
     pushMatrix()
