@@ -4,12 +4,16 @@ x = 0
 timer = 0
 random_x = 50
 random_y = 50
+zoom = 1
+scale_inc = 0.05
+start_scale = False
+zoom_timer = 0
 
 def setup():
     size(640, 580)
     
 def draw():
-    global x, timer, random_x, random_y
+    global x, timer, random_x, random_y, start_scale, zoom, zoom_timer
     timer += 1
     
     if timer == random.randint(timer, 450):
@@ -18,7 +22,18 @@ def draw():
     
     if x >= 0:
         x -= 1.5
+    
+    if key == ENTER:
+        start_scale = True
+    
+    if start_scale:
+        zoom += scale_inc
+        translate(-324*zoom/2, -700*zoom/2)
+        scale(zoom)
+        zoom_timer += 1
+        print(zoom_timer)
         
+                
     background(87, 82, 100)
     noStroke()
     
@@ -86,7 +101,17 @@ def draw():
     textAlign(CENTER, CENTER)
     fill(255)
     textSize(25)
-    text('Click space bar to start game!', 320, 480)
+    text('Press enter bar to start game!', 320, 480)
+    
+    if zoom_timer >= 150:
+        fill(0)
+        rectMode(CORNERS)
+        rect(0, 0, width, height)
+    
+    fill(255, 255, 255)
+    textSize(10)
+    text(str(mouseX) + ", " + str(mouseY), mouseX, mouseY)
+    
     
 def cloud(x_location, y_location):
     fill(100, 99, 99, 150)
