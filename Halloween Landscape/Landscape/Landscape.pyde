@@ -227,7 +227,7 @@ def game():
         y_three = 0
         x_three = random.randint(10, width - 10)
 
-    #Person
+    #User controlled character
     fill(255)
     rect(mouseX, mouseY, 50, 50)
     
