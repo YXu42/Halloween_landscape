@@ -8,6 +8,8 @@ zoom = 1
 scale_inc = 0.05
 start_scale = False
 zoom_timer = 0
+lost = False
+score = 0
 
 width = 720
 height = 540
@@ -17,16 +19,15 @@ x_two = random.randint(10, width - 10)
 y_two = random.randint(10, height - 10)
 x_three = random.randint(10, width - 10)
 y_three = random.randint(10, height - 10)
-
 score = 0
 
 def setup():
     global img
     size(640, 580)
-    img = loadImage("background.JPG")
+    img = loadImage("https://frenchbird.files.wordpress.com/2009/10/trophyprog03.jpg?w=880")
     
 def draw():
-    global x, timer, random_x, random_y, start_scale, zoom, zoom_timer, img, x_one, y_one, x_two, y_two, x_three, y_three
+    global x, timer, random_x, random_y, start_scale, zoom, zoom_timer, img, x_one, y_one, x_two, y_two, x_three, y_three, score
     timer += 1
     
     if zoom_timer <= 200:
@@ -114,15 +115,27 @@ def draw():
         textAlign(CENTER, CENTER)
         fill(255)
         textSize(25)
-        text('Press enter bar to start game!', 320, 480)
+        text("Move your mouse to dodge the ghosts!", 320, 440)
+        text('Press enter to start game!', 320, 480)
         
         if zoom_timer >= 150:
             fill(0)
             rectMode(CORNERS)
             rect(0, 0, width, height)
+        
+        rectMode(CORNERS)
+        fill(255, x)
+        rect(0, 0, 1000, 1000)
             
     else:
         game()
+        if lost == True:
+            rectMode(CORNERS)
+            fill(0)
+            rect(0, 0, 640, 580)
+            fill(255)
+            textSize(30)
+            text("Your score was: " + str(score), width/2 - 25, height/2)
     
     
 def cloud(x_location, y_location):
@@ -143,10 +156,14 @@ def cloud(x_location, y_location):
     ellipse(415, 140, 10, 20)
     
 def game():
-    global img, x_one, y_one, x_two, y_two, x_three, y_three
+    global img, x_one, y_one, x_two, y_two, x_three, y_three, lost, score
     rectMode(CENTER)
     background(0)
+    pushMatrix()
+    translate(-200, 0)
+    img.resize(0, 580)
     image(img, 0, 0)
+    popMatrix()
     
     #Ghost one
     noStroke()
@@ -164,7 +181,7 @@ def game():
     else:
         y_one = 0
         x_one = random.randint(10, width - 10)
-
+    
     #Ghost two
     noStroke()
     fill(220)
@@ -204,18 +221,14 @@ def game():
     rect(mouseX, mouseY, 50, 50)
     
     #SCORE
-    fill(255)
-    rect(10, 10, 100, 50)
-    textAlign(CENTER, CENTER)
-    fill(0)
-    textSize(25)
-    text("Score:", 50, 25)
-    textSize(15)
-    text(second() + minute(), 45, 45)
+    if not lost:
+        fill(255)
+        textSize(25)
+        text("Score:", 50, 25)
+        textSize(15)
+        score += 1
+        text(score, 45, 45)
 
     if (mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100):
-        textAlign(CENTER, CENTER)
-        background(0)
-        fill(255)
-        textSize(150)
-        text('YOU LOSE', width/2, height/2)
+        lost = True
+        
