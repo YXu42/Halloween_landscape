@@ -30,14 +30,18 @@ def draw():
     global x, timer, random_x, random_y, start_scale, zoom, zoom_timer, img, x_one, y_one, x_two, y_two, x_three, y_three, score
     timer += 1
     
+    #Once the screen zooms in to a cetain point, a new "slide" will be displayed
     if zoom_timer <= 200:
+        #Randomly changes opaqueness of a rectangle to create lightning effect
         if timer == random.randint(timer, 450):
             x = 240
             timer = 0
     
+        #Fades lightning
         if x >= 0:
             x -= 1.5
         
+        #Makes screen zoom in on door when user presses enter
         if key == ENTER:
             start_scale = True
         
@@ -54,6 +58,16 @@ def draw():
         cloud(583, 108)
         cloud(469, 148)
         cloud(393, 90)
+        
+        #Ghost
+        fill(255, 255, 255, 70)
+        arc(400, 200, 90, 200, -PI, 0)
+        arc(370, 200, 30, 40, radians(0), radians(180))
+        arc(400, 200, 30, 40, radians(0), radians(180))
+        arc(430, 200, 30, 40, radians(0), radians(180))
+        fill(0, 0, 0, 90)
+        ellipse(385, 140, 10, 20)
+        ellipse(415, 140, 10, 20)
         
         #Land at back
         fill(58, 72, 63)
@@ -111,24 +125,29 @@ def draw():
         fill(200, 255, 255, 80)
         ellipse(540, 70, 50, 50)
         
-        #Text
+        #Tutorial text
         textAlign(CENTER, CENTER)
         fill(255)
         textSize(25)
         text("Move your mouse to dodge the ghosts!", 320, 440)
         text('Press enter to start game!', 320, 480)
         
+        #Draws black screen to cut to new "slide" when zoom gets close enough
         if zoom_timer >= 150:
             fill(0)
             rectMode(CORNERS)
             rect(0, 0, width, height)
         
+        #Transparent rectangle over screen
+        #Used for lightning effect
         rectMode(CORNERS)
         fill(255, x)
         rect(0, 0, 1000, 1000)
             
     else:
         game()
+        
+        #If user loses, new screen is displayed
         if lost == True:
             rectMode(CORNERS)
             fill(0)
@@ -144,19 +163,11 @@ def cloud(x_location, y_location):
     ellipse(x_location + 65, y_location - 18, 103, 73)
     ellipse(x_location + 100, y_location - 3, 100, 70)
     ellipse(x_location + 40, y_location + 34, 100, 50)
-
-    #Ghost
-    fill(255, 255, 255, 70)
-    arc(400, 200, 90, 200, -PI, 0)
-    arc(370, 200, 30, 40, radians(0), radians(180))
-    arc(400, 200, 30, 40, radians(0), radians(180))
-    arc(430, 200, 30, 40, radians(0), radians(180))
-    fill(0, 0, 0, 90)
-    ellipse(385, 140, 10, 20)
-    ellipse(415, 140, 10, 20)
     
 def game():
     global img, x_one, y_one, x_two, y_two, x_three, y_three, lost, score
+    
+    #Background image)
     rectMode(CENTER)
     background(0)
     pushMatrix()
@@ -216,11 +227,11 @@ def game():
         y_three = 0
         x_three = random.randint(10, width - 10)
 
-    #PERSON
+    #Person
     fill(255)
     rect(mouseX, mouseY, 50, 50)
     
-    #SCORE
+    #Score
     if not lost:
         fill(255)
         textSize(25)
@@ -228,7 +239,10 @@ def game():
         textSize(15)
         score += 1
         text(score, 45, 45)
-
-    if (mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100):
+        
+    #Determines when user loses
+    if ((mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or 
+            (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or 
+            (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100)):
         lost = True
         
