@@ -1,6 +1,8 @@
 import random
 x = 400
 y = 200
+score = 0
+
 def setup():
     global img
     size(960, 720)
@@ -10,8 +12,9 @@ def draw():
     global img, x, y
     background(0)
     image(img, 0, 0)
-    x = random.randint(0, width)
-    y = random.randint(0, height)
+    frameRate(1)
+    x = random.randint(-40, width + 40)
+    y = random.randint(-40, height + 40)
     #Ghost
     noStroke()
     fill(220)
@@ -20,5 +23,15 @@ def draw():
     arc(x, y, 30, 40, radians(0), radians(180))
     arc(x + 30, y, 30, 40, radians(0), radians(180))
     fill(0)
-    ellipse(385, 140, 10, 20)
-    ellipse(415, 140, 10, 20)
+    ellipse(x - 15, y - 70, 10, 20)
+    ellipse(x + 15, y - 70, 10, 20)
+    
+    #Score
+    fill(255)
+    rect(10, 10, 150, 50)
+    
+    #Text
+    textAlign(CENTER, CENTER)
+    fill(0)
+    textSize(20)
+    text("SCORE: 0", 60, 30)
