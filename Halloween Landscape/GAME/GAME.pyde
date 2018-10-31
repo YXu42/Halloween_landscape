@@ -32,7 +32,7 @@ def draw():
     ellipse(x_one + 15, y_one - 70, 10, 20)
     #Ghost coming down
     if y_one < 720:
-        y_one += 4
+        y_one += 10
     else:
         y_one = 0
         x_one = random.randint(10, width - 10)
@@ -49,7 +49,7 @@ def draw():
     ellipse(x_two + 115, y_two + 30, 10, 20)
     #Ghost coming down
     if y_two < 720:
-        y_two += 4
+        y_two += 10
     else:
         y_two = 0
         x_two = random.randint(10, width - 10)
@@ -66,7 +66,7 @@ def draw():
     ellipse(x_three + 115, y_three + 30, 10, 20)
     #Ghost coming down
     if y_three < 720:
-        y_three += 4
+        y_three += 10
     else:
         y_three = 0
         x_three = random.randint(10, width - 10)
