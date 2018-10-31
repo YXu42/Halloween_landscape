@@ -83,21 +83,15 @@ def draw():
     ellipse(140, 571, 600, 300)
     ellipse(509, 488, 700, 200)
     
-    #Test zombie
-    #gallo_pic.resize(150, 0)
-    #image(gallo_pic, 435, 459)
-    
-    rectMode(CORNERS)
-    fill(255, x)
-    rect(0, 0, width, height)
-    
-    fill(255, 255, 255)
-    textSize(10)
-    text(str(mouseX) + ", " + str(mouseY), mouseX, mouseY)
-    
     #Moon
     fill(200, 255, 255, 80)
     ellipse(540, 70, 50, 50)
+    
+    #Text
+    textAlign(CENTER, CENTER)
+    fill(255)
+    textSize(25)
+    text('Click space bar to start game!', 320, 480)
     
 def cloud(x_location, y_location):
     fill(100, 99, 99, 150)
@@ -105,3 +99,13 @@ def cloud(x_location, y_location):
     ellipse(x_location + 65, y_location - 18, 103, 73)
     ellipse(x_location + 100, y_location - 3, 100, 70)
     ellipse(x_location + 40, y_location + 34, 100, 50)
+
+    #Ghost
+    fill(255, 255, 255, 70)
+    arc(400, 200, 90, 200, -PI, 0)
+    arc(370, 200, 30, 40, radians(0), radians(180))
+    arc(400, 200, 30, 40, radians(0), radians(180))
+    arc(430, 200, 30, 40, radians(0), radians(180))
+    fill(0, 0, 0, 90)
+    ellipse(385, 140, 10, 20)
+    ellipse(415, 140, 10, 20)
