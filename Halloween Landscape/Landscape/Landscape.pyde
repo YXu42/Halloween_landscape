@@ -6,10 +6,7 @@ random_x = 50
 random_y = 50
 
 def setup():
-    #global gallo_pic
     size(640, 580)
-    #gallo_pic = loadImage("https://www.clipartmax.com/png/middle/8-86302_free-to-use-public-domain-zombie-clip-art-zombie-clipart-transparent-background.png")
-    #imageMode(CENTER)
     
 def draw():
     global x, timer, random_x, random_y
