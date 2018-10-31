@@ -153,7 +153,7 @@ def draw():
             rect(0, 0, 640, 580)
             fill(255)
             textSize(30)
-            text("Your score was: " + str(score), width/2 - 25, height/2)
+            text("Your score was: " + str(score), width/2 - 30, height/2)
     
 def cloud(x_location, y_location):
     fill(100, 99, 99, 150)
@@ -233,7 +233,7 @@ def game():
     if not lost:
         fill(255)
         textSize(25)
-        text("Score:", CENTER - 15, CENTER)
+        text("Score:", 40, 20)
         textSize(15)
         score += 1
         text(score, 45, 45)
@@ -243,4 +243,3 @@ def game():
             (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or 
             (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100)):
         lost = True
-        
