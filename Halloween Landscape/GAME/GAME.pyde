@@ -8,13 +8,12 @@ y_two = random.randint(10, height - 10)
 x_three = random.randint(10, width - 10)
 y_three = random.randint(10, height - 10)
 
-score = 0
-
 def setup():
     global img
     size(720, 540)
     img = loadImage("background.JPG")
-    
+
+  
 def draw():
     global img, x_one, y_one, x_two, y_two, x_three, y_three
     background(0)
@@ -74,6 +73,16 @@ def draw():
     #PERSON
     fill(255)
     rect(mouseX, mouseY, 50, 50)
+    
+    #SCORE
+    fill(255)
+    rect(10, 10, 100, 50)
+    textAlign(CENTER, CENTER)
+    fill(0)
+    textSize(25)
+    text("Score:", 50, 25)
+    textSize(15)
+    text(second() + (minute()*60), 45, 45)
 
     if (mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100):
         textAlign(CENTER, CENTER)
