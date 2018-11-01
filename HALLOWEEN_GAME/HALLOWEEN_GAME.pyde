@@ -176,7 +176,7 @@ def game():
     popMatrix()
     
     
-    if second() - before_game_time >= 3:
+    if second() - before_game_time >= 1.5:
         #Ghost one
         noStroke()
         fill(220)
