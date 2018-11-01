@@ -9,16 +9,15 @@ start_scale = False
 zoom_timer = 0
 lost = False
 score = 0
-width = 720
-height = 540
+before_game_time = 0
 
 #Random position of ghosts
-x_one = random.randint(10, width - 10)
-y_one = random.randint(10, height - 10)
-x_two = random.randint(10, width - 10)
-y_two = random.randint(10, height - 10)
-x_three = random.randint(10, width - 10)
-y_three = random.randint(10, height - 10)
+x_one = random.randint(10, 710)
+y_one = -100
+x_two = random.randint(10, 710)
+y_two = -100
+x_three = random.randint(10, 710)
+y_three = -100
 
 def setup():
     global img
@@ -26,7 +25,7 @@ def setup():
     img = loadImage("https://frenchbird.files.wordpress.com/2009/10/trophyprog03.jpg?w=880")
     
 def draw():
-    global x, timer, start_scale, zoom, zoom_timer, img, x_one, y_one, x_two, y_two, x_three, y_three, score
+    global x, timer, start_scale, zoom, zoom_timer, img, x_one, y_one, x_two, y_two, x_three, y_three, score, before_game_time
     timer += 1
     
     #Once the screen zooms in to a certain point, a new "slide" will be displayed
@@ -50,6 +49,8 @@ def draw():
             scale(zoom)
             if zoom_timer <= 210:
                 zoom_timer += 1
+                
+        before_game_time = second()
             
         background(87, 82, 100)
         noStroke()
@@ -163,7 +164,7 @@ def cloud(x_location, y_location):
     ellipse(x_location + 40, y_location + 34, 100, 50)
     
 def game():
-    global img, x_one, y_one, x_two, y_two, x_three, y_three, lost, score
+    global img, x_one, y_one, x_two, y_two, x_three, y_three, lost, score, before_game_time
     
     #Background image
     rectMode(CENTER)
@@ -174,72 +175,74 @@ def game():
     image(img, 0, 0)
     popMatrix()
     
-    #Ghost one
-    noStroke()
-    fill(220)
-    arc(x_one, y_one, 90, 200, -PI, 0)
-    arc(x_one - 30, y_one, 30, 40, radians(0), radians(180))
-    arc(x_one, y_one, 30, 40, radians(0), radians(180))
-    arc(x_one + 30, y_one, 30, 40, radians(0), radians(180))
-    fill(0)
-    ellipse(x_one - 15, y_one - 70, 10, 20)
-    ellipse(x_one + 15, y_one - 70, 10, 20)
-    #Ghost one moving down
-    if y_one < 720:
-        y_one += 10
-    else:
-        y_one = 0
-        x_one = random.randint(10, width - 10)
     
-    #Ghost two
-    noStroke()
-    fill(220)
-    arc(x_two + 100, y_two + 100, 90, 200, -PI, 0)
-    arc(x_two + 70, y_two + 100, 30, 40, radians(0), radians(180))
-    arc(x_two + 100, y_two + 100, 30, 40, radians(0), radians(180))
-    arc(x_two + 130, y_two + 100, 30, 40, radians(0), radians(180))
-    fill(0)
-    ellipse(x_two + 85, y_two + 30, 10, 20)
-    ellipse(x_two + 115, y_two + 30, 10, 20)
-    #Ghost two moving down
-    if y_two < 720:
-        y_two += 10
-    else:
-        y_two = 0
-        x_two = random.randint(10, width - 10)
+    if second() - before_game_time >= 3:
+        #Ghost one
+        noStroke()
+        fill(220)
+        arc(x_one, y_one, 90, 200, -PI, 0)
+        arc(x_one - 30, y_one, 30, 40, radians(0), radians(180))
+        arc(x_one, y_one, 30, 40, radians(0), radians(180))
+        arc(x_one + 30, y_one, 30, 40, radians(0), radians(180))
+        fill(0)
+        ellipse(x_one - 15, y_one - 70, 10, 20)
+        ellipse(x_one + 15, y_one - 70, 10, 20)
+        #Ghost one moving down
+        if y_one < 720:
+            y_one += 10
+        else:
+            y_one = -100
+            x_one = random.randint(10, width - 10)
         
-    #Ghost three
-    noStroke()
-    fill(220)
-    arc(x_three + 100, y_three + 100, 90, 200, -PI, 0)
-    arc(x_three + 70, y_three + 100, 30, 40, radians(0), radians(180))
-    arc(x_three + 100, y_three + 100, 30, 40, radians(0), radians(180))
-    arc(x_three + 130, y_three + 100, 30, 40, radians(0), radians(180))
-    fill(0)
-    ellipse(x_three + 85, y_three + 30, 10, 20)
-    ellipse(x_three + 115, y_three + 30, 10, 20)
-    #Ghost three moving down
-    if y_three < 720:
-        y_three += 10
-    else:
-        y_three = 0
-        x_three = random.randint(10, width - 10)
-
-    #User controlled character
-    fill(255)
-    rect(mouseX, mouseY, 50, 50)
+        #Ghost two
+        noStroke()
+        fill(220)
+        arc(x_two + 100, y_two + 100, 90, 200, -PI, 0)
+        arc(x_two + 70, y_two + 100, 30, 40, radians(0), radians(180))
+        arc(x_two + 100, y_two + 100, 30, 40, radians(0), radians(180))
+        arc(x_two + 130, y_two + 100, 30, 40, radians(0), radians(180))
+        fill(0)
+        ellipse(x_two + 85, y_two + 30, 10, 20)
+        ellipse(x_two + 115, y_two + 30, 10, 20)
+        #Ghost two moving down
+        if y_two < 720:
+            y_two += 10
+        else:
+            y_two = -100
+            x_two = random.randint(10, width - 10)
+            
+        #Ghost three
+        noStroke()
+        fill(220)
+        arc(x_three + 100, y_three + 100, 90, 200, -PI, 0)
+        arc(x_three + 70, y_three + 100, 30, 40, radians(0), radians(180))
+        arc(x_three + 100, y_three + 100, 30, 40, radians(0), radians(180))
+        arc(x_three + 130, y_three + 100, 30, 40, radians(0), radians(180))
+        fill(0)
+        ellipse(x_three + 85, y_three + 30, 10, 20)
+        ellipse(x_three + 115, y_three + 30, 10, 20)
+        #Ghost three moving down
+        if y_three < 720:
+            y_three += 10
+        else:
+            y_three = -100
+            x_three = random.randint(10, width - 10)
     
-    #Score
-    if not lost:
+        #User controlled character
         fill(255)
-        textSize(25)
-        text("Score:", 40, 20)
-        textSize(15)
-        score += 1
-        text(score, 45, 45)
+        rect(mouseX, mouseY, 50, 50)
         
-    #Determines when user loses
-    if ((mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or 
-            (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or 
-            (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100)):
-        lost = True
+        #Score
+        if not lost:
+            fill(255)
+            textSize(25)
+            text("Score:", 40, 20)
+            textSize(15)
+            score += 1
+            text(score, 45, 45)
+            
+        #Determines when user loses
+        if ((mouseX > x_one - 50 and mouseX < x_one + 50 and mouseY > y_one - 150 and mouseY < y_one + 20) or 
+                (mouseX > x_two and mouseX < x_two + 100 and mouseY > y_two - 50 and mouseY < y_two + 100) or 
+                (mouseX > x_three and mouseX < x_three + 150 and mouseY > y_three - 50 and mouseY < y_three + 100)):
+            lost = True
